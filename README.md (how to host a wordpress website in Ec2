@@ -10,16 +10,16 @@
 
 Connect to the EC2 Instance:
 
-Use an SSH client (e.g., PuTTY on Windows or Terminal on macOS/Linux) to connect to your EC2 instance using the public IP address or DNS name.
-Example command: ssh -i your-key.pem ubuntu@your-instance-public-ip
-Install LAMP Stack (Linux, Apache, MySQL, PHP):
+1) Download ssh from google "https://download.mobatek.net/2402024022512842/MobaXterm_Installer_v24.0.zip".
+   
+2) "optional  if you want you can Update package lists:"> sudo apt update.
+   
+3) Install Apache: sudo apt install apache2
 
-Update package lists: sudo apt update
-Install Apache: sudo apt install apache2
-Install MySQL: sudo apt install mysql-server
-Secure MySQL installation: sudo mysql_secure_installation
-Install PHP and required modules: sudo apt install php libapache2-mod-php php-mysql
-Create MySQL Database and User:
+4) Install MySQL: sudo apt install mysql-
+
+5) Install PHP and required modules: sudo apt install php libapache2-mod-php php-mysql
+   Create MySQL Database and User:
 
 Log in to MySQL as the root user: sudo mysql -u root -p
 Create a database for WordPress: CREATE DATABASE wordpress;
@@ -37,12 +37,6 @@ Move WordPress files to Apache root directory: sudo mv wordpress/* /var/www/html
 Set appropriate permissions: sudo chown -R www-data:www-data /var/www/html/
 Rename the sample configuration file: sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 Edit wp-config.php file to add MySQL database details:
-sql
-Copy code
-define('DB_NAME', 'wordpress');
-define('DB_USER', 'wordpressuser');
-define('DB_PASSWORD', 'yourpassword');
-Configure Apache for WordPress:
 
-Enable rewrite module: sudo a2enmod rewrite
 Restart Apache: sudo systemctl restart apache2
+ link to download wordpress website tarfile  "https://wordpress.org/wordpress-6.4.3.tar.gz".
