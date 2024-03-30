@@ -39,4 +39,4 @@ Rename the sample configuration file: sudo mv /var/www/html/wp-config-sample.php
 Edit wp-config.php file to add MySQL database details:
 
 Restart Apache: sudo systemctl restart apache2
- link to download wordpress website tarfile  "https://wordpress.org/wordpress-6.4.3.tar.gz".
+if the link doesnt work use this > " link to download wordpress website tarfile  "https://wordpress.org/wordpress-6.4.3.tar.gz".
