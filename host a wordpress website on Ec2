@@ -8,35 +8,49 @@
 7) attach the elastic ip with ec2 "the elastic ip should be punlic ipv4 address".
 8) copy the ip public ipv4 adrress from running instance.
 
-Connect to the EC2 Instance:
 
-1) Download ssh from google "https://download.mobatek.net/2402024022512842/MobaXterm_Installer_v24.0.zip".
-   
-2) "optional  if you want you can Update package lists:"> sudo apt update.
-   
-3) Install Apache: sudo apt install apache2
+1. Install Apache server on Ubuntu
+sudo apt install apache2
 
-4) Install MySQL: sudo apt install mysql-
+2. Install php runtime and php mysql connector
+sudo apt install php libapache2-mod-php php-mysql
 
-5) Install PHP and required modules: sudo apt install php libapache2-mod-php php-mysql
-   Create MySQL Database and User:
+3. Install MySQL server
+sudo apt install mysql-server 
 
-Log in to MySQL as the root user: sudo mysql -u root -p
-Create a database for WordPress: CREATE DATABASE wordpress;
-Create a MySQL user and grant privileges:
-sql
-Copy code
-CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'yourpassword';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpressuser'@'localhost';
-FLUSH PRIVILEGES;
-Download and Configure WordPress:
+4. Login to MySQL server
+sudo mysql -u root
 
-Download the latest WordPress release: wget https://wordpress.org/latest.tar.gz
-Extract the archive: tar -zxvf latest.tar.gz
-Move WordPress files to Apache root directory: sudo mv wordpress/* /var/www/html/
-Set appropriate permissions: sudo chown -R www-data:www-data /var/www/html/
-Rename the sample configuration file: sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-Edit wp-config.php file to add MySQL database details:
+5. Change authentication plugin to mysql_native_password (change the password to something strong)
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'Testpassword@123';
 
-Restart Apache: sudo systemctl restart apache2
-if the link doesnt work use this > " link to download wordpress website tarfile  "https://wordpress.org/wordpress-6.4.3.tar.gz".
+6. Create a new database user for wordpress (change the password to something strong)
+CREATE USER 'wp_user'@localhost IDENTIFIED BY 'Testpassword@123';
+
+7. Create a database for wordpress
+CREATE DATABASE wp;
+
+8. Grant all privilges on the database 'wp' to the newly created user
+GRANT ALL PRIVILEGES ON wp.* TO 'wp_user'@localhost;
+
+9. Download wordpress
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+
+10. Unzip
+tar -xvf latest.tar.gz
+
+11. Move wordpress folder to apache document root
+sudo mv wordpress/ /var/www/html
+
+12. Command to restart/reload apache server
+sudo systemctl restart apache2
+OR
+sudo systemctl reload apache2
+
+13. Install certbot
+sudo apt-get update
+sudo apt install certbot python3-certbot-apache
+
+14. Request and install ssl on your site with certbot
+sudo certbot --apache
