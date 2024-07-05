@@ -54,3 +54,6 @@ sudo apt install certbot python3-certbot-apache
 
 14. Request and install ssl on your site with certbot
 sudo certbot --apache
+Finally the result is shown in the below picture
+![Screenshot (153)](https://github.com/Karthickrajait/Aws-Cloud-project/assets/127578495/eaa51dfc-4520-47d3-9950-9bfd58104325)
+
